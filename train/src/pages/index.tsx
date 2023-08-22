@@ -1,16 +1,8 @@
-import styles from '@/styles/Home.module.css';
-import { Inter } from 'next/font/google';
-import Head from 'next/head';
+import { auth, fetchTrains, type Train } from './api/AuthApi';
 
-const inter = Inter({ subsets: ['latin'] });
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 
-export default function Home() {
-  return (
-    <>
-      <Head>
-        <title>Train</title>
-      </Head>
-      <main className={`${styles.main} ${inter.className}`}></main>
-    </>
-  );
+export default async function Home() {
+  const trains = await auth().then(async (token) => await fetchTrains(token as string));
+  return <section></section>;
 }
