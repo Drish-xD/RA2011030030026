@@ -59,14 +59,14 @@ async function fetchTrains(AUTHTOKEN: string) {
   }
 }
 
-async function fetchTrain(slug: number, AUTHTOKEN: string) {
+async function fetchTrain(slug: string, AUTHTOKEN: string) {
   try {
     const response = await axios.get(`http://20.244.56.144:80/train/trains/${slug}`, {
       headers: {
         Authorization: `Bearer ${AUTHTOKEN}`,
       },
     });
-    const data: Train[] = response.data;
+    const data: Train = response.data;
     return data;
   } catch (error) {
     console.error('Error fetching train data:', error);
@@ -74,3 +74,4 @@ async function fetchTrain(slug: number, AUTHTOKEN: string) {
 }
 
 export { auth, fetchTrain, fetchTrains };
+
